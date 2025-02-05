@@ -1,0 +1,38 @@
+:root {
+    --root-bg: #fff;
+    --text-color: #000;
+    --primary-color: rgb(254, 169, 169);
+    --primary-color__hover: hsl(from var(--primary-color) h s calc(l - 10));
+
+    --header-bg: rgb(217, 217, 217);
+    --header-color: #000;
+
+    --card-bg: #fff;
+    --card-border-color: #000;
+    --card-text: #000;
+
+    --primary-btn-bg: var(--primary-color);
+    --primary-btn-bg--hover: var(--primary-color__hover);
+    --primary-btn-border: var(--primary-color);
+    --primary-btn-border--hover: var(--primary-color__hover);
+    --primary-btn-color: #fff;
+    --primary-btn-color--hover: #fff;
+
+    --search-bg: #fff;
+    --search-bg--hover: rgb(255, 193, 7);
+    --search-border: rgb(255, 193, 7);
+    --search-border--hover: #fff;
+    --search-color: rgb(255, 193, 7);
+    --search-color--hover: #fff;
+}
+
+body {
+    color: var(--text-color) !important;
+    background: var(--root-bg) !important;
+}
+
+.wrapper {
+    color: var(--text-color);
+    background: var(--root-bg);
+    min-height: 100vh;
+}
