@@ -1,0 +1,68 @@
+.form-container {
+    display: flex; /* Enable Flexbox */
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+}
+
+.custom-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px !important;
+    padding-left: 0px !important;  /* Убираем отступ слева */
+    padding-right: 0px !important;  /* Убираем отступ справа */   
+	justify-content: center;
+	align-items: center;
+	gap: 30px;
+}
+
+.space{
+    padding-top: 10px;
+    width: 90% !important;
+    margin-right: auto !important;
+    margin-left: auto !important; /* Центрируем контейнер */ 
+}
+
+
+.main_title {
+    color: #34375d;
+    font-size: 36px;
+    margin: 0 0 22px -3px;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.direction {
+    color: #34375d;
+    font-weight: 700;
+    font-size: 2.000em;
+    margin: 0 0 34px -3px;
+    line-height: 1;
+    padding-left: 100px;
+}
+
+.not-found {
+    padding-left: 100px;
+}
+
+.under-header {
+    width: 95%;
+    padding-top: 20px;
+    display: flex;
+    padding-left: 90px;
+    padding-right: 90px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.btn-outline-warning {
+    --bs-btn-hover-color: #3941B8 !important;
+    --bs-btn-active-color: #3941B8 !important;
+}
+
+.form-control {
+    color: rgb(125, 125, 125) !important;
+    border: var(--bs-border-width) solid #ffc107 !important; 
+}
