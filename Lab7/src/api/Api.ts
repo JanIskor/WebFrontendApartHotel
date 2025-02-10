@@ -60,10 +60,10 @@ export interface ApartmentApplication {
   application?: number | null;
 }
 
-export interface UpdateApplicationStatusAdmin {
-  /** Status */
-  status: number;
-}
+// export interface UpdateApplicationStatusAdmin {
+//   /** Status */
+//   status: number;
+// }
 
 export interface ApartmentAdd {
   /**
@@ -155,6 +155,9 @@ export interface UserRegister {
    */
   username: string;
 }
+
+
+
 
 export interface UserProfile {
   /**
@@ -318,389 +321,463 @@ export class HttpClient<SecurityDataType = unknown> {
  *
  * Test description
  */
-export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
-  applications = {
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsList
-     * @request GET:/applications/
-     * @secure
-     */
-    applicationsList: (
-      query?: {
-        status?: number;
-        date_formation_start?: string;
-        date_formation_end?: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<void, any>({
-        path: `/applications/`,
-        method: "GET",
-        query: query,
-        secure: true,
-        ...params,
-      }),
+export class Api<
+	SecurityDataType extends unknown,
+> extends HttpClient<SecurityDataType> {
+	applications = {
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsList
+		 * @request GET:/applications/
+		 * @secure
+		 */
+		applicationsList: (
+			query?: {
+				status?: number
+				date_formation_start?: string
+				date_formation_end?: string
+			},
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/applications/`,
+				method: 'GET',
+				query: query,
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsRead
-     * @request GET:/applications/{application_id}/
-     * @secure
-     */
-    applicationsRead: (applicationId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/applications/${applicationId}/`,
-        method: "GET",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsRead
+		 * @request GET:/applications/{application_id}/
+		 * @secure
+		 */
+		applicationsRead: (applicationId: string, params: RequestParams = {}) =>
+			this.request<void, any>({
+				path: `/applications/${applicationId}/`,
+				method: 'GET',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsDeleteDelete
-     * @request DELETE:/applications/{application_id}/delete/
-     * @secure
-     */
-    applicationsDeleteDelete: (applicationId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/applications/${applicationId}/delete/`,
-        method: "DELETE",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsDeleteDelete
+		 * @request DELETE:/applications/{application_id}/delete/
+		 * @secure
+		 */
+		applicationsDeleteDelete: (
+			applicationId: string,
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/applications/${applicationId}/delete/`,
+				method: 'DELETE',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsDeleteApartmentDelete
-     * @request DELETE:/applications/{application_id}/delete_apartment/{apartment_id}/
-     * @secure
-     */
-    applicationsDeleteApartmentDelete: (applicationId: string, apartmentId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/applications/${applicationId}/delete_apartment/${apartmentId}/`,
-        method: "DELETE",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsDeleteApartmentDelete
+		 * @request DELETE:/applications/{application_id}/delete_apartment/{apartment_id}/
+		 * @secure
+		 */
+		applicationsDeleteApartmentDelete: (
+			applicationId: string,
+			apartmentId: string,
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/applications/${applicationId}/delete_apartment/${apartmentId}/`,
+				method: 'DELETE',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsUpdateUpdate
-     * @request PUT:/applications/{application_id}/update/
-     * @secure
-     */
-    applicationsUpdateUpdate: (applicationId: string, data: Application, params: RequestParams = {}) =>
-      this.request<Application, any>({
-        path: `/applications/${applicationId}/update/`,
-        method: "PUT",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsUpdateUpdate
+		 * @request PUT:/applications/{application_id}/update/
+		 * @secure
+		 */
+		applicationsUpdateUpdate: (
+			applicationId: string,
+			data: Application,
+			params: RequestParams = {}
+		) =>
+			this.request<Application, any>({
+				path: `/applications/${applicationId}/update/`,
+				method: 'PUT',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsUpdateApartmentUpdate
-     * @request PUT:/applications/{application_id}/update_apartment/{apartment_id}/
-     * @secure
-     */
-    applicationsUpdateApartmentUpdate: (
-      applicationId: string,
-      apartmentId: string,
-      data: ApartmentApplication,
-      params: RequestParams = {},
-    ) =>
-      this.request<ApartmentApplication, any>({
-        path: `/applications/${applicationId}/update_apartment/${apartmentId}/`,
-        method: "PUT",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsUpdateApartmentUpdate
+		 * @request PUT:/applications/{application_id}/update_apartment/{apartment_id}/
+		 * @secure
+		 */
+		applicationsUpdateApartmentUpdate: (
+			applicationId: string,
+			apartmentId: string,
+			data: ApartmentApplication,
+			params: RequestParams = {}
+		) =>
+			this.request<ApartmentApplication, any>({
+				path: `/applications/${applicationId}/update_apartment/${apartmentId}/`,
+				method: 'PUT',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsUpdateStatusAdminUpdate
-     * @request PUT:/applications/{application_id}/update_status_admin/
-     * @secure
-     */
-    applicationsUpdateStatusAdminUpdate: (
-      applicationId: string,
-      data: UpdateApplicationStatusAdmin,
-      params: RequestParams = {},
-    ) =>
-      this.request<UpdateApplicationStatusAdmin, any>({
-        path: `/applications/${applicationId}/update_status_admin/`,
-        method: "PUT",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsUpdateStatusAdminUpdate
+		 * @request PUT:/applications/{application_id}/update_status_admin/
+		 * @secure
+		 */
+		// applicationsUpdateStatusAdminUpdate: (
+		// 	applicationId: string,
+		// 	data: UpdateApplicationStatusAdmin,
+		// 	params: RequestParams = {}
+		// ) =>
+		// 	this.request<UpdateApplicationStatusAdmin, any>({
+		// 		path: `/applications/${applicationId}/update_status_admin/`,
+		// 		method: 'PUT',
+		// 		body: data,
+		// 		secure: true,
+		// 		type: ContentType.Json,
+		// 		format: 'json',
+		// 		...params,
+		// 	}),
 
-    /**
-     * No description
-     *
-     * @tags applications
-     * @name ApplicationsUpdateStatusUserUpdate
-     * @request PUT:/applications/{application_id}/update_status_user/
-     * @secure
-     */
-    applicationsUpdateStatusUserUpdate: (applicationId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/applications/${applicationId}/update_status_user/`,
-        method: "PUT",
-        secure: true,
-        ...params,
-      }),
-  };
-  apartments = {
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsList
-     * @request GET:/apartments/
-     * @secure
-     */
-    apartmentsList: (
-      query?: {
-        apartment_name?: string;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<void, any>({
-        path: `/apartments/`,
-        method: "GET",
-        query: query,
-        secure: true,
-        ...params,
-      }),
+		// ?????
+		applicationsUpdateStatusAdminUpdate: (
+			applicationId: string,
+			data: {
+				status?: number
+			},
+			params: RequestParams = {}
+		) =>
+			this.request<
+				{
+					status?: number
+				},
+				any
+			>({
+				path: `/applications/${applicationId}/update_status_admin/`,
+				method: 'PUT',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsCreateCreate
-     * @request POST:/apartments/create/
-     * @secure
-     */
-    apartmentsCreateCreate: (
-      data: {
-        /**
-         * @minLength 1
-         * @maxLength 100
-         */
-        name: string;
-        /**
-         * @minLength 1
-         * @maxLength 500
-         */
-        description: string;
-        /**
-         * @min -2147483648
-         * @max 2147483647
-         */
-        price: number;
-        /** @format binary */
-        image?: File | null;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<ApartmentAdd, any>({
-        path: `/apartments/create/`,
-        method: "POST",
-        body: data,
-        secure: true,
-        type: ContentType.FormData,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags plane_configuration
+		 * @name ApplicationAcceptRejectUpdate
+		 * @summary Завершить или отклонить заявку, обновив её статус
+		 * @request PUT:/applications/${applicationId}/update_status_admin/
+		 * @secure
+		 */
+		ApplicationAcceptRejectUpdate: (
+			id: number,
+			data: { status: 'completed' | 'rejected' }, // Указываем тип для поля status
+			params: RequestParams = {}
+		) =>
+			this.request<Application, any>({
+				path: `/applications/${id}/update_status_admin/`,
+				method: 'PUT',
+				body: data, // Передаем объект с полем status
+				secure: true,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsRead
-     * @request GET:/apartments/{apartment_id}/
-     * @secure
-     */
-    apartmentsRead: (apartmentId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/apartments/${apartmentId}/`,
-        method: "GET",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags applications
+		 * @name ApplicationsUpdateStatusUserUpdate
+		 * @request PUT:/applications/{application_id}/update_status_user/
+		 * @secure
+		 */
+		applicationsUpdateStatusUserUpdate: (
+			applicationId: string,
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/applications/${applicationId}/update_status_user/`,
+				method: 'PUT',
+				secure: true,
+				...params,
+			}),
+	}
+	apartments = {
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsList
+		 * @request GET:/apartments/
+		 * @secure
+		 */
+		apartmentsList: (
+			query?: {
+				apartment_name?: string
+			},
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/apartments/`,
+				method: 'GET',
+				query: query,
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsAddToApplicationCreate
-     * @request POST:/apartments/{apartment_id}/add_to_application/
-     * @secure
-     */
-    apartmentsAddToApplicationCreate: (apartmentId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/apartments/${apartmentId}/add_to_application/`,
-        method: "POST",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsCreateCreate
+		 * @request POST:/apartments/create/
+		 * @secure
+		 */
+		apartmentsCreateCreate: (
+			data: {
+				/**
+				 * @minLength 1
+				 * @maxLength 100
+				 */
+				name: string
+				/**
+				 * @minLength 1
+				 * @maxLength 500
+				 */
+				description: string
+				/**
+				 * @min -2147483648
+				 * @max 2147483647
+				 */
+				price: number
+				/** @format binary */
+				image?: File | null
+			},
+			params: RequestParams = {}
+		) =>
+			this.request<ApartmentAdd, any>({
+				path: `/apartments/create/`,
+				method: 'POST',
+				body: data,
+				secure: true,
+				type: ContentType.FormData,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsDeleteDelete
-     * @request DELETE:/apartments/{apartment_id}/delete/
-     * @secure
-     */
-    apartmentsDeleteDelete: (apartmentId: string, params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/apartments/${apartmentId}/delete/`,
-        method: "DELETE",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsRead
+		 * @request GET:/apartments/{apartment_id}/
+		 * @secure
+		 */
+		apartmentsRead: (apartmentId: string, params: RequestParams = {}) =>
+			this.request<void, any>({
+				path: `/apartments/${apartmentId}/`,
+				method: 'GET',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsUpdateUpdate
-     * @request PUT:/apartments/{apartment_id}/update/
-     * @secure
-     */
-    apartmentsUpdateUpdate: (apartmentId: string, data: Apartment, params: RequestParams = {}) =>
-      this.request<Apartment, any>({
-        path: `/apartments/${apartmentId}/update/`,
-        method: "PUT",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsAddToApplicationCreate
+		 * @request POST:/apartments/{apartment_id}/add_to_application/
+		 * @secure
+		 */
+		apartmentsAddToApplicationCreate: (
+			apartmentId: string,
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/apartments/${apartmentId}/add_to_application/`,
+				method: 'POST',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags apartments
-     * @name ApartmentsUpdateImageCreate
-     * @request POST:/apartments/{apartment_id}/update_image/
-     * @secure
-     */
-    apartmentsUpdateImageCreate: (
-      apartmentId: string,
-      data: {
-        /** @format binary */
-        image?: File;
-      },
-      params: RequestParams = {},
-    ) =>
-      this.request<void, any>({
-        path: `/apartments/${apartmentId}/update_image/`,
-        method: "POST",
-        body: data,
-        secure: true,
-        type: ContentType.FormData,
-        ...params,
-      }),
-  };
-  users = {
-    /**
-     * No description
-     *
-     * @tags users
-     * @name UsersLoginCreate
-     * @request POST:/users/login/
-     * @secure
-     */
-    usersLoginCreate: (data: UserLogin, params: RequestParams = {}) =>
-      this.request<UserLogin, any>({
-        path: `/users/login/`,
-        method: "POST",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsDeleteDelete
+		 * @request DELETE:/apartments/{apartment_id}/delete/
+		 * @secure
+		 */
+		apartmentsDeleteDelete: (apartmentId: string, params: RequestParams = {}) =>
+			this.request<void, any>({
+				path: `/apartments/${apartmentId}/delete/`,
+				method: 'DELETE',
+				secure: true,
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags users
-     * @name UsersLogoutCreate
-     * @request POST:/users/logout/
-     * @secure
-     */
-    usersLogoutCreate: (params: RequestParams = {}) =>
-      this.request<void, any>({
-        path: `/users/logout/`,
-        method: "POST",
-        secure: true,
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsUpdateUpdate
+		 * @request PUT:/apartments/{apartment_id}/update/
+		 * @secure
+		 */
+		apartmentsUpdateUpdate: (
+			apartmentId: string,
+			data: Apartment,
+			params: RequestParams = {}
+		) =>
+			this.request<Apartment, any>({
+				path: `/apartments/${apartmentId}/update/`,
+				method: 'PUT',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags users
-     * @name UsersRegisterCreate
-     * @request POST:/users/register/
-     * @secure
-     */
-    usersRegisterCreate: (data: UserRegister, params: RequestParams = {}) =>
-      this.request<UserRegister, any>({
-        path: `/users/register/`,
-        method: "POST",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
+		/**
+		 * No description
+		 *
+		 * @tags apartments
+		 * @name ApartmentsUpdateImageCreate
+		 * @request POST:/apartments/{apartment_id}/update_image/
+		 * @secure
+		 */
+		apartmentsUpdateImageCreate: (
+			apartmentId: string,
+			data: {
+				/** @format binary */
+				image?: File
+			},
+			params: RequestParams = {}
+		) =>
+			this.request<void, any>({
+				path: `/apartments/${apartmentId}/update_image/`,
+				method: 'POST',
+				body: data,
+				secure: true,
+				type: ContentType.FormData,
+				...params,
+			}),
+	}
+	users = {
+		/**
+		 * No description
+		 *
+		 * @tags users
+		 * @name UsersLoginCreate
+		 * @request POST:/users/login/
+		 * @secure
+		 */
+		usersLoginCreate: (data: UserLogin, params: RequestParams = {}) =>
+			this.request<UserLogin, any>({
+				path: `/users/login/`,
+				method: 'POST',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
 
-    /**
-     * No description
-     *
-     * @tags users
-     * @name UsersUpdateUpdate
-     * @request PUT:/users/{user_id}/update/
-     * @secure
-     */
-    usersUpdateUpdate: (userId: string, data: UserProfile, params: RequestParams = {}) =>
-      this.request<UserProfile, any>({
-        path: `/users/${userId}/update/`,
-        method: "PUT",
-        body: data,
-        secure: true,
-        type: ContentType.Json,
-        format: "json",
-        ...params,
-      }),
-  };
+		/**
+		 * No description
+		 *
+		 * @tags users
+		 * @name UsersLogoutCreate
+		 * @request POST:/users/logout/
+		 * @secure
+		 */
+		usersLogoutCreate: (params: RequestParams = {}) =>
+			this.request<void, any>({
+				path: `/users/logout/`,
+				method: 'POST',
+				secure: true,
+				...params,
+			}),
+
+		/**
+		 * No description
+		 *
+		 * @tags users
+		 * @name UsersRegisterCreate
+		 * @request POST:/users/register/
+		 * @secure
+		 */
+		usersRegisterCreate: (data: UserRegister, params: RequestParams = {}) =>
+			this.request<UserRegister, any>({
+				path: `/users/register/`,
+				method: 'POST',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
+
+		/**
+		 * No description
+		 *
+		 * @tags users
+		 * @name UsersUpdateUpdate
+		 * @request PUT:/users/{user_id}/update/
+		 * @secure
+		 */
+		usersUpdateUpdate: (
+			userId: string,
+			data: UserProfile,
+			params: RequestParams = {}
+		) =>
+			this.request<UserProfile, any>({
+				path: `/users/${userId}/update/`,
+				method: 'PUT',
+				body: data,
+				secure: true,
+				type: ContentType.Json,
+				format: 'json',
+				...params,
+			}),
+	}
 }
+

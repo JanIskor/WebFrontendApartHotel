@@ -37,13 +37,20 @@ const ApplicationsPage = () => {
 
     useEffect(() => {
         if (!is_authenticated) {
-            navigate("/")
+            navigate("/403/")
         }
     }, [is_authenticated]);
 
     useEffect(() => {
         dispatch(fetchApplications())
     }, [filters]);
+
+    useEffect(() => {
+			const intervalId = setInterval(handleFetchApplications, 2000)
+			return () => clearInterval(intervalId)
+		}, [filters])
+
+	const handleFetchApplications = () => dispatch(fetchApplications())
 
     const applyFilters = async (e) => {
 			e.preventDefault()

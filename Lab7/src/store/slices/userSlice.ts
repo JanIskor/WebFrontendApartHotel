@@ -4,10 +4,11 @@ import {AxiosResponse} from "axios";
 import {AsyncThunkConfig} from "@reduxjs/toolkit/dist/createAsyncThunk";
 import {api} from "modules/api.ts";
 
-const initialState:T_User = {
+const initialState: T_User = {
 	id: -1,
-	username: "",
-	is_authenticated: false
+	username: '',
+	is_authenticated: false,
+	is_superuser: false,
 }
 
 export const handleLogin = createAsyncThunk<T_User, object, AsyncThunkConfig>(
@@ -61,6 +62,7 @@ const userSlice = createSlice({
 	reducers: {
         updateUserInfo: (state, action) => {
             state.is_authenticated = action.payload.is_authenticated
+            state.is_superuser = action.payload.is_superuser
             state.id = action.payload.id
             state.username = action.payload.username
         }
@@ -68,11 +70,13 @@ const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(handleLogin.fulfilled, (state:T_User, action: PayloadAction<T_User>) => {
             state.is_authenticated = true
+            state.is_superuser = action.payload.is_superuser
             state.id = action.payload.id
             state.username = action.payload.username
         });
         builder.addCase(handleRegister.fulfilled, (state:T_User, action: PayloadAction<T_User>) => {
             state.is_authenticated = true
+            state.is_superuser = false
             state.id = action.payload.id
             state.username = action.payload.username
         });

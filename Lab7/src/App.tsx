@@ -11,30 +11,42 @@ import ApplicationPage from "pages/ApplicationPage/ApplicationPage.tsx";
 import ProfilePage from "pages/ProfilePage/ProfilePage.tsx";
 import Header from "components/Header/Header.tsx";
 import Breadcrumbs from "components/Breadcrumbs/Breadcrumbs.tsx";
+import ApartmentsTablePage from "pages/ApartmentsTablePage/ApartmentsTablePage"
+import ApartmentEditPage from "pages/ApartmentEditPage/ApartmentEditPage"
+import ApartmentAddPage from "pages/ApartmentAddPage/ApartmentAddPage"
 
 function App() {
     return (
-        <div>
-            <Header />
-            <Container className="pt-4">
-                <Row className="mb-3">
-                    <Breadcrumbs />
-                </Row>
-                <Row>
-                    <Routes>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/login/" element={<LoginPage />} />
-                        <Route path="/register/" element={<RegisterPage />} />
-                        <Route path="/apartments/" element={<ApartmentsListPage />} />
-                        <Route path="/apartments/:id/" element={<ApartmentPage />} />
-                        <Route path="/applications/" element={<ApplicationsPage />} />
-                        <Route path="/applications/:id/" element={<ApplicationPage />} />
-                        <Route path="/profile/" element={<ProfilePage />} />
-                    </Routes>
-                </Row>
-            </Container>
-        </div>
-    )
+			<div>
+				<Header />
+				<Container className='pt-4'>
+					<Row className='mb-3'>
+						<Breadcrumbs />
+					</Row>
+					<Row>
+						<Routes>
+							<Route path='/' element={<HomePage />} />
+							<Route path='/login/' element={<LoginPage />} />
+							<Route path='/register/' element={<RegisterPage />} />
+							<Route path='/apartments/' element={<ApartmentsListPage />} />
+							<Route path='/apartments/:id/' element={<ApartmentPage />} />
+							<Route
+								path='/apartments-table/'
+								element={<ApartmentsTablePage />}
+							/>
+							<Route
+								path='/apartments/:id/edit'
+								element={<ApartmentEditPage />}
+							/>
+							<Route path='/apartments/add' element={<ApartmentAddPage />} />
+							<Route path='/applications/' element={<ApplicationsPage />} />
+							<Route path='/applications/:id/' element={<ApplicationPage />} />
+							<Route path='/profile/' element={<ProfilePage />} />
+						</Routes>
+					</Row>
+				</Container>
+			</div>
+		)
 }
 
 export default App

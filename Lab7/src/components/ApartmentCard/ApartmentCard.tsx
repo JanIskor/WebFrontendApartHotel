@@ -125,33 +125,6 @@ const ApartmentCard = ({apartment,  showAddBtn=false, showRemoveBtn=false, editM
 					</div>
 				</div>
 			</Card>
-			// <Card key={apartment.id} style={{width: '18rem' }}>
-			//     <img
-			//         alt=""
-			//         src={apartment.image}
-			//         style={{"height": "200px"}}
-			//     />
-			//     <CardBody>
-			//         <CardTitle tag="h5">
-			//             {apartment.name}
-			//         </CardTitle>
-			//         <CardText>
-			//             Цена: {apartment.price} руб.
-			//         </CardText>
-			//         <Col className="d-flex justify-content-between">
-			//             <Link to={`/apartments/${apartment.id}`}>
-			//                 <Button color="primary" type="button">
-			//                     Открыть
-			//                 </Button>
-			//             </Link>
-			//             {showAddBtn &&
-			//                 <Button color="secondary" onClick={handeAddToDraftApplication}>
-			//                     Добавить
-			//                 </Button>
-			//             }
-			//         </Col>
-			//     </CardBody>
-			// </Card>
 		)
 };
 
